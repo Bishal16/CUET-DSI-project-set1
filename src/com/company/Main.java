@@ -79,7 +79,7 @@ public class Main {
         //System.out.println(inventory.get(0).get("productName"));
 
 
-        optionCaller();
+        options();
 
     }
     static void deleteProduct(){
@@ -104,7 +104,7 @@ public class Main {
             System.out.println("\""+ delete +"\" Not Found in inventory!!");
         }
 
-        optionCaller();
+        options();
     }
     static void buyProduct(){
         clear_console();
@@ -136,7 +136,7 @@ public class Main {
         if (!prodFound)
             System.out.println("Product not found in inventory. \nBuy fail2.");
 
-        optionCaller();
+        options();
     }
     static void sellProduct(){
         clear_console();
@@ -173,7 +173,7 @@ public class Main {
         if (!prodFound)
             System.out.println("Product not found in inventory. \nsell fail.");
 
-        optionCaller();
+        options();
     }
     static void listProduct(){
         clear_console();
@@ -192,17 +192,17 @@ public class Main {
                     inventory.get(i).get("available"),
                     inventory.get(i).get("productProfit")+"\n");
         }
-        System.out.format("%45s","-------------------------------------\n");
+        System.out.format("%45s","--------------------------------------\n");
         System.out.format("%45s", "total profit (including deleted) = "+totalProf+"\n");
-        optionCaller();
+        options();
     }
     static void seeAccount(){
         clear_console();
         System.out.println("\n\tAvailable account balance: " + AccountBalance);
-        optionCaller();
+        options();
     }
 
-    static void optionCaller(){
+    static void options(){
         System.out.println("\n1.Add a product\n"
                 + "2.Delete product\n"
                 + "3.Buy product\n"
@@ -242,6 +242,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Start\n");
         clear_console();
-        optionCaller();
+        options();
     }
 }
