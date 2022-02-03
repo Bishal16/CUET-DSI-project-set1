@@ -134,7 +134,7 @@ public class Main {
             }
         }
         if (!prodFound)
-            System.out.println("Product not found in inventory. \nBuy fail2.");
+            System.out.println("Product not found in inventory. \nBuy fail.");
 
         options();
     }
@@ -241,7 +241,9 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Start\n");
-        clear_console();
-        options();
+
+        Main obj = new Main();
+        obj.clear_console();
+        obj.options();
     }
 }

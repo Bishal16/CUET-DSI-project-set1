@@ -17,10 +17,18 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="175" column="10" lean-forward="false" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="10" />
+            <state relative-caret-position="352">
+              <caret line="241" column="44" lean-forward="true" selection-start-line="241" selection-start-column="44" selection-end-line="241" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#clear_console#0;class#Main#0" expanded="false" />
+                <element signature="method#addProduct#0;class#Main#0" expanded="false" />
+                <element signature="method#deleteProduct#0;class#Main#0" expanded="false" />
+                <element signature="method#buyProduct#0;class#Main#0" expanded="false" />
+                <element signature="method#sellProduct#0;class#Main#0" expanded="false" />
+                <element signature="method#listProduct#0;class#Main#0" expanded="false" />
+                <element signature="method#seeAccount#0;class#Main#0" expanded="false" />
+                <element signature="method#options#0;class#Main#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -208,12 +216,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1643713196705</updated>
-      <workItem from="1643713207209" duration="36769000" />
+      <workItem from="1643713207209" duration="38014000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36769000" />
+    <option name="totallyTimeSpent" value="38014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -227,7 +235,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="831" y="21" width="526" height="701" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="831" y="21" width="526" height="701" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -271,10 +279,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="175" column="10" lean-forward="false" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="10" />
+        <state relative-caret-position="352">
+          <caret line="241" column="44" lean-forward="true" selection-start-line="241" selection-start-column="44" selection-end-line="241" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#clear_console#0;class#Main#0" expanded="false" />
+            <element signature="method#addProduct#0;class#Main#0" expanded="false" />
+            <element signature="method#deleteProduct#0;class#Main#0" expanded="false" />
+            <element signature="method#buyProduct#0;class#Main#0" expanded="false" />
+            <element signature="method#sellProduct#0;class#Main#0" expanded="false" />
+            <element signature="method#listProduct#0;class#Main#0" expanded="false" />
+            <element signature="method#seeAccount#0;class#Main#0" expanded="false" />
+            <element signature="method#options#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
