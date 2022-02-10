@@ -1,7 +1,7 @@
 package com.company;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -12,8 +12,8 @@ import java.util.*;
 
 public class Main {
 
-    private static List<Map> inventory = new ArrayList();
-    public static double AccountBalance = 1000;
+    public static List<Map> inventory = new ArrayList();
+    public static double AccountBalance;
 
 
     static void clear_console(){
@@ -27,7 +27,6 @@ public class Main {
     }
 
     static void addProduct(){
-        clear_console();
         String productName;
         double buyPrice;
         double sellPrice;
@@ -48,7 +47,6 @@ public class Main {
         System.out.print("\tSell price : ");
         sellPrice = input.nextDouble();
 
-        //productProfit = sellPrice - buyPrice;
 
         //checking if the product is already added
         boolean duplicate = false;
@@ -73,17 +71,10 @@ public class Main {
 
             inventory.add(product);
             System.out.println("\""+productName +"\" added to inventory list.");
-
         }
-        //System.out.println(inventory);
-        //System.out.println(inventory.get(0).get("productName"));
-
-
-        options();
-
     }
+
     static void deleteProduct(){
-        clear_console();
         System.out.print("\n\tEnter product name to delete : ");
 
         Scanner input = new Scanner(System.in);
@@ -103,11 +94,9 @@ public class Main {
         if (!prodFound){
             System.out.println("\""+ delete +"\" Not Found in inventory!!");
         }
-
-        options();
     }
+
     static void buyProduct(){
-        clear_console();
         System.out.print("\n\tEnter product name to buy : ");
         Scanner input = new Scanner(System.in);
         String buy =  input.nextLine();
@@ -135,11 +124,10 @@ public class Main {
         }
         if (!prodFound)
             System.out.println("Product not found in inventory. \nBuy fail.");
-
-        options();
     }
+
     static void sellProduct(){
-        clear_console();
+        //clear_console();
         System.out.print("\n\tEnter product name to sell : ");
         Scanner input = new Scanner(System.in);
         String sell =  input.nextLine();
@@ -172,34 +160,53 @@ public class Main {
         }
         if (!prodFound)
             System.out.println("Product not found in inventory. \nsell fail.");
-
-        options();
     }
-    static void listProduct(){
-        clear_console();
+    //this function used for two scenarios 1.show only inventory item with available amount
+                                         //2.show items with profit and total profit including deleted product
+    static void listProduct(boolean productOnly){
         System.out.println("inventory : ");
         double totalProf = 0.0;
 
-        System.out.format("%20s%15s%10s","Product Name","Available", "Profit\n");
-        System.out.format("%20s%15s%10s","------------","---------", "------\n");
+        // print table header
+        if(productOnly) {
+            System.out.format("%20s%15s", "Product Name", "Available\n");
+            System.out.format("%20s%15s", "------------", "---------\n");
+        }
+        else{
+            System.out.format("%20s%15s%10s","Product Name","Available", "Profit\n");
+            System.out.format("%20s%15s%10s","------------","---------", "------\n");
+        }
 
+        //print table row
         for (int i = 0; i < inventory.size(); i++){
             totalProf = totalProf + (double) inventory.get(i).get("productProfit");
             if ((boolean)inventory.get(i).get("deleted") )
                 continue;
-            System.out.format("%20s%15d%10s",
-                    inventory.get(i).get("productName"),
-                    inventory.get(i).get("available"),
-                    inventory.get(i).get("productProfit")+"\n");
+            if(productOnly){
+                System.out.format("%20s%15s",
+                        inventory.get(i).get("productName"),
+                        inventory.get(i).get("available") +"\n");
+            }
+            else {
+                System.out.format("%20s%15d%10s",
+                        inventory.get(i).get("productName"),
+                        inventory.get(i).get("available"),
+                        inventory.get(i).get("productProfit")+"\n");
+            }
         }
-        System.out.format("%45s","--------------------------------------\n");
-        System.out.format("%45s", "total profit (including deleted) = "+totalProf+"\n");
-        options();
+
+        if(productOnly){
+            System.out.format("%35s","--------------------------\n");
+        }
+        else{
+            System.out.format("%45s","--------------------------------------\n");
+            System.out.format("%45s", "total profit (including deleted) = "+totalProf+"\n");
+        }
+
     }
+
     static void seeAccount(){
-        clear_console();
         System.out.println("\n\tAvailable account balance: " + AccountBalance);
-        options();
     }
 
     static void options(){
@@ -211,39 +218,118 @@ public class Main {
                 + "6.Show available balance\n"
                 + "0.Exit");
         System.out.print("Enter (0-6) : ");
-        Scanner input = new Scanner(System.in);
-        int option = input.nextInt();
-        switch(option) {
-            case 1:
+    }
+
+    static void subOption(String option){
+        while(true) {
+            clear_console();
+            listProduct(true);
+            System.out.println("\n1."+option+" another product\n" +
+                    "2.Go to main menu\n" +
+                    "Enter (1-2) : ");
+            Scanner input = new Scanner(System.in);
+
+            int subOption = input.nextInt();
+            if (subOption == 1 && option=="Add")
                 addProduct();
-                break;
-            case 2:
+            else if (subOption == 1 && option=="Delete")
                 deleteProduct();
-                break;
-            case 3:
-                buyProduct();
-                break;
-            case 4:
+            else if (subOption == 1 && option=="Sell")
                 sellProduct();
+            else if (subOption == 1 && option=="Buy")
+                buyProduct();
+            else if (subOption == 2) {
                 break;
-            case 5:
-                listProduct();
-                break;
-            case 6:
-                seeAccount();
-                break;
-            case 0:
-                System.out.println("Program Terminated.");
-                System.exit(0);
+            }
         }
     }
 
-
     public static void main(String[] args) {
-        System.out.println("Start\n");
+        System.out.println("Shop ledger v.2 started.\n");
+        Main Inventory = new Main();
+        //--------------------------------------------------
+        //retrieving previously saved data from file into inventory list variable
+        try {
+            FileInputStream fis = new FileInputStream("savedData.tmp");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Inventory.inventory  = (List<Map>) ois.readObject();
+            ois.close();
 
-        Main obj = new Main();
-        obj.clear_console();
-        obj.options();
+            FileInputStream fis2 = new FileInputStream("savedAccBal.tmp");
+            ObjectInputStream ois2 = new ObjectInputStream(fis2);
+            Inventory.AccountBalance  = (double) ois2.readObject();
+            System.out.println(Inventory.AccountBalance);
+            ois2.close();
+        }
+        catch(Exception e) {
+            System.out.println("read failed");
+        }
+        //---------------------------------------------------
+
+
+        while (true){
+            Inventory.clear_console();
+            Inventory.options();
+
+            Scanner input = new Scanner(System.in);
+            int option = input.nextInt();
+            if(option < 0 || option > 6){
+                System.out.println("Warning : Enter between 0-6!!");
+                continue;
+            }
+            switch(option) {
+                case 1:
+                    Inventory.addProduct();
+                    subOption("Add"); // created an extra function to avoid code redundancy
+                    break;
+                case 2:
+                    Inventory.listProduct(true);//show inventory before deleting a product
+                    Inventory.deleteProduct();
+                    subOption("Delete");
+                    break;
+                case 3:
+                    Inventory.listProduct(true);
+                    Inventory.buyProduct();
+                    subOption("Buy");
+                    break;
+                case 4:
+                    Inventory.listProduct(true);
+                    Inventory.sellProduct();
+                    subOption("Sell");
+                    break;
+                case 5:
+                    Inventory.listProduct(false);
+                    System.out.println("Press Enter key to continue...");
+                    Scanner s = new Scanner(System.in);
+                    s.nextLine();
+                    break;
+                case 6:
+                    Inventory.seeAccount();
+                    System.out.println("Press Enter key to continue...");
+                    Scanner t = new Scanner(System.in);
+                    t.nextLine();
+                    break;
+                case 0:
+                    //saving inventory info to file
+                    try {
+                        FileOutputStream fos = new FileOutputStream("savedData.tmp");
+                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+                        oos.writeObject(Inventory.inventory);
+                        oos.close();
+
+                        FileOutputStream fos2 = new FileOutputStream("savedAccBal.tmp");
+                        ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+                        oos2.writeObject(Inventory.AccountBalance);
+                        oos2.close();
+                    }
+                    catch(Exception e) {
+                        System.out.println("save failed");
+                    }
+
+                    //
+                    System.out.println("Program Terminated and Data saved.");
+                    System.exit(0);
+            }
+        }
     }
 }
