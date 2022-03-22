@@ -1,7 +1,7 @@
 
 # DSI Industrial Attachment individual project-set1 (Shop ledger)
 
-It is a java console program based on OOP concept. Here I've built a shop ledger which contains the fowllowing 6 
+It is a java console program based on OOP concept. Here I've built a shop ledger which contains the following 6 
 features.
 1. **Add a product**<br />
 Its basically adding a product in the inventory list with some product info (product name, buy price, sell price, available no., profit from selling the product etc.)
